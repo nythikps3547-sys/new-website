@@ -1,15 +1,12 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Vitals Monitor</title>
 
 <style>
-
 :root{
   --bg:#050706;
   --panel:#0c1210;
@@ -20,30 +17,23 @@
   --temp:#ffb648;
   --bad:#ff5d5d;
   --off:#2a3530;
-
   --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
   --sans:"IBM Plex Sans",-apple-system,"Segoe UI",sans-serif;
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box;}
 
-html,
-body{
-  height:100%;
+html,body{
   margin:0;
+  min-height:100%;
 }
 
 body{
   background:var(--bg);
   color:var(--text);
   font-family:var(--sans);
-
   display:flex;
-  align-items:center;
   justify-content:center;
-
   padding:24px;
 }
 
@@ -64,20 +54,13 @@ body{
   height:10px;
   border-radius:50%;
   background:var(--bpm);
-
   box-shadow:0 0 8px var(--bpm);
-
   animation:pulse 1.4s infinite ease-in-out;
 }
 
 @keyframes pulse{
-  0%,100%{
-    opacity:1;
-  }
-
-  50%{
-    opacity:.35;
-  }
+  0%,100%{opacity:1}
+  50%{opacity:.35}
 }
 
 .brand-name{
@@ -87,17 +70,22 @@ body{
   color:var(--text-dim);
 }
 
-.card{
+.card,
+.vital-card,
+.controls-card,
+.notifications-card{
   background:var(--panel);
   border:1px solid var(--panel-line);
   border-radius:4px;
+}
+
+.card{
   padding:28px;
 }
 
 .card h1{
   font-size:20px;
   margin:0 0 4px;
-  font-weight:600;
 }
 
 .card p.sub{
@@ -118,43 +106,38 @@ label{
   margin-bottom:16px;
 }
 
-input{
+input,
+select{
   width:100%;
   background:#060a09;
   border:1px solid var(--panel-line);
   color:var(--text);
-
   border-radius:3px;
   padding:10px 12px;
-
   font-size:14px;
   font-family:var(--sans);
 }
 
-input:focus{
+input:focus,
+select:focus{
   outline:none;
   border-color:var(--bpm);
+}
+
+button{
+  cursor:pointer;
 }
 
 button.primary{
   width:100%;
   background:var(--bpm);
   color:#04140a;
-
   border:none;
   border-radius:3px;
-
   padding:11px 12px;
-
   font-size:14px;
   font-weight:600;
-
-  cursor:pointer;
   margin-top:6px;
-}
-
-button.primary:hover{
-  filter:brightness(1.08);
 }
 
 button.primary:disabled{
@@ -165,31 +148,23 @@ button.primary:disabled{
 .result{
   margin-top:18px;
   padding:12px 14px;
-
   border-radius:3px;
-
-  font-size:13.5px;
-
+  font-size:13px;
   font-family:var(--mono);
-
   display:none;
 }
 
 .result.bad{
   display:block;
-
   background:rgba(255,93,93,.08);
   border:1px solid rgba(255,93,93,.4);
-
   color:var(--bad);
 }
-
 
 /* DASHBOARD */
 
 .dash-wrap{
   display:none;
-
   width:100%;
   max-width:560px;
 }
@@ -198,86 +173,53 @@ button.primary:disabled{
   display:flex;
   justify-content:space-between;
   align-items:center;
-
   margin-bottom:20px;
 }
 
-.dash-header .who{
+.who{
   font-size:12.5px;
   color:var(--text-dim);
 }
 
-.dash-header .who span{
+.who span{
   color:var(--text);
 }
 
 .logout-btn{
   background:none;
-
   border:1px solid var(--panel-line);
-
   color:var(--text-dim);
-
   font-size:12px;
-
   padding:6px 12px;
-
   border-radius:3px;
-
-  cursor:pointer;
 }
-
-.logout-btn:hover{
-  color:var(--text);
-  border-color:var(--text-dim);
-}
-
-
-/* VITALS */
 
 .vitals-grid{
   display:grid;
-
   grid-template-columns:1fr 1fr;
-
   gap:14px;
-
   margin-bottom:14px;
 }
 
 .vital-card{
-  background:var(--panel);
-
-  border:1px solid var(--panel-line);
-
-  border-radius:4px;
-
   padding:20px;
 }
 
 .vital-label{
   font-size:11.5px;
-
   color:var(--text-dim);
-
   margin-bottom:10px;
 }
 
 .vital-value{
   font-family:var(--mono);
-
   font-size:40px;
-
   line-height:1;
-
-  font-weight:500;
 }
 
 .vital-value .unit{
   font-size:16px;
-
   color:var(--text-dim);
-
   margin-left:4px;
 }
 
@@ -291,120 +233,79 @@ button.primary:disabled{
 
 .vital-updated{
   font-size:11px;
-
   color:var(--text-dim);
-
   margin-top:10px;
-
   font-family:var(--mono);
 }
-
 
 /* CONTROLS */
 
 .controls-card{
-  background:var(--panel);
-
-  border:1px solid var(--panel-line);
-
-  border-radius:4px;
-
   padding:20px;
+  margin-bottom:14px;
 }
 
 .controls-title{
   font-size:11.5px;
-
   color:var(--text-dim);
-
   margin-bottom:16px;
 }
 
 .control-row{
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
-
   padding:12px 0;
-
   border-top:1px solid var(--panel-line);
 }
 
 .control-row:first-of-type{
   border-top:none;
-
   padding-top:0;
 }
 
 .control-label{
   display:flex;
-
   align-items:center;
-
   gap:10px;
-
   font-size:14px;
 }
 
 .indicator{
   width:14px;
   height:14px;
-
   border-radius:50%;
-
   background:var(--off);
-
-  transition:
-    background .15s,
-    box-shadow .15s;
 }
 
 .indicator.buzzer-on{
   background:var(--bad);
-
   box-shadow:0 0 10px var(--bad);
 }
 
 .indicator.led-on{
   background:#ffe066;
-
   box-shadow:0 0 10px #ffe066;
 }
 
 .toggle{
   position:relative;
-
   width:44px;
   height:24px;
-
   background:var(--off);
-
   border-radius:12px;
-
   border:none;
-
-  cursor:pointer;
-
-  transition:background .15s;
 }
 
 .toggle::after{
   content:"";
-
   position:absolute;
-
   top:3px;
   left:3px;
-
   width:18px;
   height:18px;
-
   background:var(--text);
-
   border-radius:50%;
-
   transition:transform .15s;
 }
 
@@ -414,252 +315,171 @@ button.primary:disabled{
 
 .toggle.on::after{
   transform:translateX(20px);
-
   background:#04140a;
 }
 
+/* NOTIFICATIONS */
 
-/* =========================================
-   NOTIFICATION SECTION
-========================================= */
-
-.notify-card{
-  background:var(--panel);
-
-  border:1px solid var(--panel-line);
-
-  border-radius:4px;
-
+.notifications-card{
   padding:20px;
-
-  margin-top:14px;
+  margin-bottom:14px;
 }
 
-.notify-header{
+.notification-header{
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
-
-  margin-bottom:15px;
+  margin-bottom:16px;
 }
 
-.notify-title{
+.notification-title{
   font-size:11.5px;
-
   color:var(--text-dim);
 }
 
-.add-notify{
+.add-btn{
   background:var(--bpm);
-
-  color:#04140a;
-
   border:none;
-
-  padding:8px 12px;
-
-  border-radius:3px;
-
-  cursor:pointer;
-
+  color:#04140a;
   font-weight:600;
+  padding:7px 12px;
+  border-radius:3px;
 }
 
-.add-notify:hover{
-  filter:brightness(1.08);
+.notification-status{
+  font-size:11px;
+  color:var(--text-dim);
+  margin-bottom:12px;
 }
 
-
-/* FORM */
-
-.notify-form{
-  display:none;
-
+.notification-item{
   border-top:1px solid var(--panel-line);
+  padding:13px 0;
+}
 
-  padding-top:15px;
+.notification-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
 
-  margin-bottom:10px;
+.notification-time{
+  font-family:var(--mono);
+  font-size:15px;
+  color:var(--bpm);
+}
+
+.notification-message{
+  font-size:13px;
+  margin-top:5px;
+  color:var(--text);
+  word-break:break-word;
+}
+
+.notification-actions{
+  display:flex;
+  gap:6px;
+  margin-top:9px;
+}
+
+.small-btn{
+  background:none;
+  border:1px solid var(--panel-line);
+  color:var(--text-dim);
+  border-radius:3px;
+  padding:5px 9px;
+  font-size:11px;
+}
+
+.small-btn:hover{
+  color:var(--text);
+}
+
+.empty{
+  color:var(--text-dim);
+  font-size:13px;
+  padding:8px 0;
+}
+
+/* MODAL */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:1000;
+}
+
+.modal-box{
+  width:100%;
+  max-width:400px;
+  background:var(--panel);
+  border:1px solid var(--panel-line);
+  border-radius:5px;
+  padding:22px;
+}
+
+.modal-box h2{
+  margin:0 0 18px;
+  font-size:18px;
 }
 
 .time-row{
   display:grid;
-
   grid-template-columns:1fr 1fr 1fr;
-
-  gap:6px;
-
-  margin-bottom:10px;
+  gap:8px;
 }
 
-.time-row select,
-.notify-message{
-  background:#060a09;
+.modal-buttons{
+  display:flex;
+  gap:8px;
+  margin-top:18px;
+}
 
-  color:var(--text);
-
-  border:1px solid var(--panel-line);
-
-  border-radius:3px;
-
+.modal-buttons button{
+  flex:1;
   padding:10px;
-
-  font-family:var(--sans);
-}
-
-.time-row select{
-  width:100%;
-}
-
-.notify-message{
-  width:100%;
-
-  font-size:14px;
-}
-
-.time-row select:focus,
-.notify-message:focus{
-  outline:none;
-
-  border-color:var(--bpm);
-}
-
-.notify-save,
-.notify-cancel{
-  margin-top:10px;
-
-  padding:8px 12px;
-
-  border:none;
-
   border-radius:3px;
-
-  cursor:pointer;
 }
 
-.notify-save{
+.save-btn{
   background:var(--bpm);
-
   color:#04140a;
-
+  border:none;
   font-weight:600;
 }
 
-.notify-cancel{
-  background:var(--off);
-
-  color:var(--text);
-}
-
-
-/* NOTIFICATION LIST */
-
-.notify-item{
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  gap:10px;
-
-  padding:13px 0;
-
-  border-top:1px solid var(--panel-line);
-}
-
-.notify-info{
-  flex:1;
-}
-
-.notify-time{
-  font-family:var(--mono);
-
-  color:var(--bpm);
-
-  font-size:15px;
-}
-
-.notify-message-display{
-  color:var(--text-dim);
-
-  font-size:12px;
-
-  margin-top:4px;
-}
-
-.notify-actions{
-  display:flex;
-
-  gap:5px;
-}
-
-.notify-edit,
-.notify-delete{
+.cancel-btn{
   background:none;
-
+  color:var(--text);
   border:1px solid var(--panel-line);
-
-  color:var(--text-dim);
-
-  padding:5px 8px;
-
-  cursor:pointer;
-
-  border-radius:3px;
 }
-
-.notify-edit:hover{
-  color:var(--bpm);
-
-  border-color:var(--bpm);
-}
-
-.notify-delete:hover{
-  color:var(--bad);
-
-  border-color:var(--bad);
-}
-
-.empty-notifications{
-  color:var(--text-dim);
-
-  font-size:12px;
-
-  padding-top:5px;
-}
-
 
 /* CONNECTION */
 
 .conn-status{
   display:flex;
-
   align-items:center;
-
   gap:7px;
-
   font-size:12px;
-
   color:var(--text-dim);
-
   margin-top:16px;
 }
 
 .conn-dot{
   width:7px;
   height:7px;
-
   border-radius:50%;
-
   background:var(--text-dim);
 }
 
 .conn-dot.live{
   background:var(--bpm);
-
   box-shadow:0 0 6px var(--bpm);
 }
 
@@ -667,48 +487,24 @@ button.primary:disabled{
   background:var(--bad);
 }
 
-
-/* MOBILE */
-
 @media(max-width:420px){
-
   .vitals-grid{
     grid-template-columns:1fr;
   }
-
-  .notify-item{
-    align-items:flex-start;
-  }
-
-  .notify-actions{
-    flex-direction:column;
-  }
-
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =========================================
-     LOGIN
-========================================= -->
+<!-- LOGIN -->
 
 <div id="authWrap" class="wrap">
 
   <div class="brand">
-
     <div class="brand-mark"></div>
-
-    <div class="brand-name">
-      VITALS MONITOR
-    </div>
-
+    <div class="brand-name">VITALS MONITOR</div>
   </div>
-
 
   <div class="card">
 
@@ -718,87 +514,56 @@ button.primary:disabled{
       Enter the credentials you were given to view live vitals.
     </p>
 
-
     <div class="field">
-
-      <label for="username">
-        Username
-      </label>
-
+      <label for="username">Username</label>
       <input
         type="text"
         id="username"
         autocomplete="username"
         placeholder="Username"
       />
-
     </div>
 
-
     <div class="field">
-
-      <label for="password">
-        Password
-      </label>
-
+      <label for="password">Password</label>
       <input
         type="password"
         id="password"
         autocomplete="current-password"
         placeholder="Password"
       />
-
     </div>
 
-
-    <button
-      class="primary"
-      id="loginBtn"
-    >
+    <button class="primary" id="loginBtn">
       Sign in
     </button>
 
-
-    <div
-      class="result bad"
-      id="result"
-    ></div>
+    <div class="result bad" id="result"></div>
 
   </div>
-
 </div>
 
 
-
-<!-- =========================================
-     DASHBOARD
-========================================= -->
+<!-- DASHBOARD -->
 
 <div id="dashWrap" class="dash-wrap">
-
 
   <div class="dash-header">
 
     <div class="who">
-      Signed in as
-      <span>patient_vital</span>
+      Signed in as <span>patient_vital</span>
     </div>
 
-    <button
-      class="logout-btn"
-      id="logoutBtn"
-    >
+    <button class="logout-btn" id="logoutBtn">
       Sign out
     </button>
 
   </div>
 
 
-
   <!-- VITALS -->
 
   <div class="vitals-grid">
-
 
     <div class="vital-card">
 
@@ -807,26 +572,15 @@ button.primary:disabled{
       </div>
 
       <div class="vital-value bpm">
-
-        <span id="bpmValue">
-          --
-        </span>
-
-        <span class="unit">
-          bpm
-        </span>
-
+        <span id="bpmValue">--</span>
+        <span class="unit">bpm</span>
       </div>
 
-      <div
-        class="vital-updated"
-        id="bpmUpdated"
-      >
+      <div class="vital-updated" id="bpmUpdated">
         no data yet
       </div>
 
     </div>
-
 
 
     <div class="vital-card">
@@ -836,29 +590,17 @@ button.primary:disabled{
       </div>
 
       <div class="vital-value temp">
-
-        <span id="tempValue">
-          --
-        </span>
-
-        <span class="unit">
-          °C
-        </span>
-
+        <span id="tempValue">--</span>
+        <span class="unit">°C</span>
       </div>
 
-      <div
-        class="vital-updated"
-        id="tempUpdated"
-      >
+      <div class="vital-updated" id="tempUpdated">
         no data yet
       </div>
 
     </div>
 
-
   </div>
-
 
 
   <!-- CONTROLS -->
@@ -869,189 +611,64 @@ button.primary:disabled{
       DEVICE CONTROLS
     </div>
 
-
     <div class="control-row">
 
       <div class="control-label">
-
-        <div
-          class="indicator"
-          id="buzzerIndicator"
-        ></div>
-
+        <div class="indicator" id="buzzerIndicator"></div>
         Buzzer
-
       </div>
 
-
-      <button
-        class="toggle"
-        id="buzzerToggle"
-      ></button>
+      <button class="toggle" id="buzzerToggle"></button>
 
     </div>
 
 
-
     <div class="control-row">
 
       <div class="control-label">
-
-        <div
-          class="indicator"
-          id="ledIndicator"
-        ></div>
-
+        <div class="indicator" id="ledIndicator"></div>
         LED
-
       </div>
 
-
-      <button
-        class="toggle"
-        id="ledToggle"
-      ></button>
+      <button class="toggle" id="ledToggle"></button>
 
     </div>
 
   </div>
 
 
+  <!-- NOTIFICATIONS -->
 
-  <!-- =========================================
-       NOTIFICATION SCHEDULER
-  ========================================= -->
+  <div class="notifications-card">
 
-  <div class="notify-card">
+    <div class="notification-header">
 
-
-    <div class="notify-header">
-
-      <div class="notify-title">
+      <div class="notification-title">
         SCHEDULE NOTIFICATIONS
       </div>
 
-
-      <button
-        class="add-notify"
-        id="addNotifyBtn"
-      >
+      <button class="add-btn" id="addNotificationBtn">
         + Add
       </button>
 
     </div>
 
-
-
-    <!-- ADD / EDIT FORM -->
-
-    <div
-      class="notify-form"
-      id="notifyForm"
-    >
-
-
-      <div class="time-row">
-
-
-        <select id="notifyHour">
-
-          <option value="1">01</option>
-          <option value="2">02</option>
-          <option value="3">03</option>
-          <option value="4">04</option>
-          <option value="5">05</option>
-          <option value="6">06</option>
-          <option value="7">07</option>
-          <option value="8">08</option>
-          <option value="9">09</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-
-        </select>
-
-
-        <select id="notifyMinute">
-
-          <option value="0">00</option>
-          <option value="5">05</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-          <option value="25">25</option>
-          <option value="30">30</option>
-          <option value="35">35</option>
-          <option value="40">40</option>
-          <option value="45">45</option>
-          <option value="50">50</option>
-          <option value="55">55</option>
-
-        </select>
-
-
-        <select id="notifyAmPm">
-
-          <option value="AM">
-            AM
-          </option>
-
-          <option value="PM">
-            PM
-          </option>
-
-        </select>
-
-
-      </div>
-
-
-
-      <input
-        class="notify-message"
-        id="notifyMessage"
-        type="text"
-        placeholder="Notification message"
-      />
-
-
-      <button
-        class="notify-save"
-        id="saveNotifyBtn"
-      >
-        Save
-      </button>
-
-
-      <button
-        class="notify-cancel"
-        id="cancelNotifyBtn"
-      >
-        Cancel
-      </button>
-
-
+    <div class="notification-status" id="notificationStatus">
+      Connecting to Firebase notifications...
     </div>
 
-
-
-    <!-- NOTIFICATION LIST -->
-
-    <div id="notifyList"></div>
-
+    <div id="notificationList">
+      <div class="empty">
+        No notifications scheduled.
+      </div>
+    </div>
 
   </div>
 
 
-
-  <!-- CONNECTION -->
-
   <div class="conn-status">
 
-    <div
-      class="conn-dot"
-      id="connDot"
-    ></div>
+    <div class="conn-dot" id="connDot"></div>
 
     <span id="connLabel">
       Connecting…
@@ -1059,96 +676,131 @@ button.primary:disabled{
 
   </div>
 
+</div>
+
+
+<!-- NOTIFICATION MODAL -->
+
+<div class="modal" id="notificationModal">
+
+  <div class="modal-box">
+
+    <h2 id="modalTitle">
+      Add Notification
+    </h2>
+
+
+    <div class="field">
+
+      <label>
+        Time
+      </label>
+
+      <div class="time-row">
+
+        <select id="hourSelect"></select>
+
+        <select id="minuteSelect"></select>
+
+        <select id="ampmSelect">
+          <option value="AM">AM</option>
+          <option value="PM">PM</option>
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div class="field">
+
+      <label for="messageInput">
+        Message
+      </label>
+
+      <input
+        type="text"
+        id="messageInput"
+        placeholder="Example: Take your medicine"
+        maxlength="200"
+      />
+
+    </div>
+
+
+    <div class="modal-buttons">
+
+      <button class="cancel-btn" id="cancelNotificationBtn">
+        Cancel
+      </button>
+
+      <button class="save-btn" id="saveNotificationBtn">
+        Save
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
 
 
-
-<!-- =========================================
-     FIREBASE + JAVASCRIPT
-========================================= -->
-
 <script type="module">
 
-
-/* =========================================
-   FIREBASE IMPORTS
-========================================= */
+/* =========================================================
+   FIREBASE
+========================================================= */
 
 import {
   initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
   getAuth,
   signInAnonymously,
-  onAuthStateChanged
-}
-from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
   getDatabase,
   ref,
   onValue,
-  set
-}
-from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+  set,
+  push,
+  remove
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-
-
-/* =========================================
-   FIREBASE CONFIG
-========================================= */
 
 const firebaseConfig = {
 
-  apiKey:
-    "AIzaSyDM5_3qmJVfWc9kF6qHBf4ojWbym4PyX4A",
+  apiKey: "AIzaSyDM5_3qmJVfWc9kF6qHBf4ojWbym4PyX4A",
 
-  authDomain:
-    "netvital.firebaseapp.com",
+  authDomain: "netvital.firebaseapp.com",
 
   databaseURL:
     "https://netvital-default-rtdb.asia-southeast1.firebasedatabase.app/",
 
-  projectId:
-    "netvital",
+  projectId: "netvital",
 
   appId:
     "1:305975124083:web:b9f5ec7adc1497766d0a06"
-
 };
 
 
+const app = initializeApp(firebaseConfig);
 
-const app =
-  initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-
-const auth =
-  getAuth(app);
+const db = getDatabase(app);
 
 
-const db =
-  getDatabase(app);
-
-
-
-/* =========================================
+/* =========================================================
    LOGIN
-========================================= */
+========================================================= */
 
-const MOCK_USERNAME =
-  "patient_vital";
-
-const MOCK_PASSWORD =
-  "iotwork462";
+const MOCK_USERNAME = "patient_vital";
+const MOCK_PASSWORD = "iotwork462";
 
 
 const authWrap =
@@ -1173,35 +825,23 @@ const logoutBtn =
   document.getElementById("logoutBtn");
 
 
-
-loginBtn.addEventListener(
-  "click",
-  handleLogin
-);
+loginBtn.addEventListener("click", handleLogin);
 
 
-passwordInput.addEventListener(
-  "keydown",
-  (e) => {
+passwordInput.addEventListener("keydown", (e) => {
 
-    if (e.key === "Enter") {
-
-      handleLogin();
-
-    }
-
+  if (e.key === "Enter") {
+    handleLogin();
   }
-);
 
+});
 
 
 async function handleLogin(){
 
-  const u =
-    usernameInput.value.trim();
+  const u = usernameInput.value.trim();
 
-  const p =
-    passwordInput.value;
+  const p = passwordInput.value;
 
 
   if (
@@ -1209,110 +849,101 @@ async function handleLogin(){
     p !== MOCK_PASSWORD
   ){
 
-    result.style.display =
-      "block";
+    result.style.display = "block";
 
     result.textContent =
       "✘ Incorrect username or password.";
 
     return;
-
   }
 
 
-  result.style.display =
-    "none";
+  result.style.display = "none";
 
-  loginBtn.disabled =
-    true;
+  loginBtn.disabled = true;
 
 
   try{
 
     await signInAnonymously(auth);
 
-  }
+  }catch(err){
 
-  catch(err){
-
-    result.style.display =
-      "block";
+    result.style.display = "block";
 
     result.textContent =
-      "Could not connect to the database. Check your Firebase config.";
+      "Could not connect to Firebase.";
 
     console.error(err);
 
-  }
+  }finally{
 
-  finally{
-
-    loginBtn.disabled =
-      false;
+    loginBtn.disabled = false;
 
   }
 
 }
 
 
+logoutBtn.addEventListener("click", async () => {
 
-/* =========================================
-   LOGOUT
-========================================= */
+  try{
 
-logoutBtn.addEventListener(
-  "click",
-  () => {
+    await signOut(auth);
 
-    auth.signOut();
+  }catch(err){
 
-    dashWrap.style.display =
-      "none";
-
-    authWrap.style.display =
-      "block";
-
-    usernameInput.value =
-      "";
-
-    passwordInput.value =
-      "";
+    console.error(err);
 
   }
-);
+
+  dashWrap.style.display = "none";
+
+  authWrap.style.display = "block";
+
+  usernameInput.value = "";
+
+  passwordInput.value = "";
+
+});
 
 
+/* =========================================================
+   AUTH STATE
+========================================================= */
 
-/* =========================================
-   FIREBASE AUTH STATE
-========================================= */
+let listenersStarted = false;
 
-onAuthStateChanged(
-  auth,
-  (user) => {
 
-    if(user){
+onAuthStateChanged(auth, (user) => {
 
-      authWrap.style.display =
-        "none";
+  if(user){
 
-      dashWrap.style.display =
-        "block";
+    authWrap.style.display = "none";
+
+    dashWrap.style.display = "block";
+
+
+    if(!listenersStarted){
+
+      listenersStarted = true;
 
       attachVitalsListener();
 
       attachControlsListener();
 
+      attachNotificationListener();
+
     }
 
   }
-);
+
+});
 
 
-
-/* =========================================
+/* =========================================================
    VITALS
-========================================= */
+========================================================= */
 
 const bpmValue =
   document.getElementById("bpmValue");
@@ -1333,18 +964,10 @@ const connLabel =
   document.getElementById("connLabel");
 
 
-let vitalsAttached =
-  false;
-
-
-
 function timeAgo(ts){
 
-  if(!ts){
-
+  if(!ts)
     return "no data yet";
-
-  }
 
 
   const s =
@@ -1353,46 +976,26 @@ function timeAgo(ts){
     );
 
 
-  if(s < 60){
-
+  if(s < 60)
     return `${s}s ago`;
 
-  }
 
-
-  if(s < 3600){
-
+  if(s < 3600)
     return `${Math.floor(s / 60)}m ago`;
-
-  }
 
 
   return `${Math.floor(s / 3600)}h ago`;
-
 }
 
 
-
 function attachVitalsListener(){
-
-  if(vitalsAttached){
-
-    return;
-
-  }
-
-
-  vitalsAttached =
-    true;
-
 
   onValue(
     ref(db, "vitals"),
 
     (snap) => {
 
-      const data =
-        snap.val();
+      const data = snap.val();
 
 
       if(!data){
@@ -1404,7 +1007,6 @@ function attachVitalsListener(){
           "No data at /vitals yet.";
 
         return;
-
       }
 
 
@@ -1420,7 +1022,6 @@ function attachVitalsListener(){
 
       bpmUpdated.textContent =
         timeAgo(data.timestamp);
-
 
       tempUpdated.textContent =
         timeAgo(data.timestamp);
@@ -1440,9 +1041,7 @@ function attachVitalsListener(){
         connLabel.textContent =
           "Live";
 
-      }
-
-      else{
+      }else{
 
         connDot.className =
           "conn-dot stale";
@@ -1460,21 +1059,19 @@ function attachVitalsListener(){
         "conn-dot stale";
 
       connLabel.textContent =
-        "Database read failed — check rules/config.";
+        "Database read failed.";
 
       console.error(err);
 
     }
-
   );
 
 }
 
 
-
-/* =========================================
-   DEVICE CONTROLS
-========================================= */
+/* =========================================================
+   CONTROLS
+========================================================= */
 
 const buzzerToggle =
   document.getElementById("buzzerToggle");
@@ -1489,23 +1086,7 @@ const ledIndicator =
   document.getElementById("ledIndicator");
 
 
-let controlsAttached =
-  false;
-
-
-
 function attachControlsListener(){
-
-  if(controlsAttached){
-
-    return;
-
-  }
-
-
-  controlsAttached =
-    true;
-
 
   onValue(
     ref(db, "controls"),
@@ -1521,7 +1102,6 @@ function attachControlsListener(){
         !!data.buzzer
       );
 
-
       buzzerIndicator.classList.toggle(
         "buzzer-on",
         !!data.buzzer
@@ -1533,18 +1113,15 @@ function attachControlsListener(){
         !!data.led
       );
 
-
       ledIndicator.classList.toggle(
         "led-on",
         !!data.led
       );
 
     }
-
   );
 
 }
-
 
 
 buzzerToggle.addEventListener(
@@ -1563,7 +1140,6 @@ buzzerToggle.addEventListener(
 );
 
 
-
 ledToggle.addEventListener(
   "click",
   () => {
@@ -1580,707 +1156,752 @@ ledToggle.addEventListener(
 );
 
 
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
 
-/* =========================================
-   NOTIFICATION SYSTEM
-========================================= */
+const addNotificationBtn =
+  document.getElementById(
+    "addNotificationBtn"
+  );
 
-const addNotifyBtn =
-  document.getElementById("addNotifyBtn");
+const notificationModal =
+  document.getElementById(
+    "notificationModal"
+  );
 
-const saveNotifyBtn =
-  document.getElementById("saveNotifyBtn");
+const cancelNotificationBtn =
+  document.getElementById(
+    "cancelNotificationBtn"
+  );
 
-const cancelNotifyBtn =
-  document.getElementById("cancelNotifyBtn");
+const saveNotificationBtn =
+  document.getElementById(
+    "saveNotificationBtn"
+  );
 
-const notifyForm =
-  document.getElementById("notifyForm");
+const notificationList =
+  document.getElementById(
+    "notificationList"
+  );
 
-const notifyList =
-  document.getElementById("notifyList");
+const notificationStatus =
+  document.getElementById(
+    "notificationStatus"
+  );
 
-const notifyHour =
-  document.getElementById("notifyHour");
+const modalTitle =
+  document.getElementById("modalTitle");
 
-const notifyMinute =
-  document.getElementById("notifyMinute");
+const hourSelect =
+  document.getElementById("hourSelect");
 
-const notifyAmPm =
-  document.getElementById("notifyAmPm");
+const minuteSelect =
+  document.getElementById("minuteSelect");
 
-const notifyMessage =
-  document.getElementById("notifyMessage");
+const ampmSelect =
+  document.getElementById("ampmSelect");
+
+const messageInput =
+  document.getElementById("messageInput");
 
 
-let scheduledNotifications = [];
+let editingId = null;
+
+let firebaseNotifications = {};
 
 let notificationTimers = {};
 
-let editingNotificationId =
-  null;
 
+/* =========================================================
+   TIME SELECTORS
+========================================================= */
 
+for(let h = 1; h <= 12; h++){
 
-/* =========================================
-   LOAD SAVED NOTIFICATIONS
-========================================= */
+  const option =
+    document.createElement("option");
 
-try{
+  option.value = h;
 
-  const saved =
-    localStorage.getItem(
-      "scheduledNotifications"
-    );
+  option.textContent =
+    String(h).padStart(2, "0");
 
-
-  if(saved){
-
-    scheduledNotifications =
-      JSON.parse(saved);
-
-  }
-
-}
-
-catch(error){
-
-  console.error(
-    "Could not load notifications:",
-    error
-  );
-
-  scheduledNotifications =
-    [];
+  hourSelect.appendChild(option);
 
 }
 
 
+for(let m = 0; m < 60; m++){
 
-/* =========================================
-   ADD BUTTON
-========================================= */
+  const option =
+    document.createElement("option");
 
-addNotifyBtn.addEventListener(
-  "click",
-  () => {
+  option.value = m;
 
-    editingNotificationId =
-      null;
+  option.textContent =
+    String(m).padStart(2, "0");
 
-    notifyHour.value =
-      "12";
+  minuteSelect.appendChild(option);
 
-    notifyMinute.value =
-      "0";
-
-    notifyAmPm.value =
-      "AM";
-
-    notifyMessage.value =
-      "";
-
-    notifyForm.style.display =
-      "block";
-
-    notifyMessage.focus();
-
-  }
-);
+}
 
 
+/* =========================================================
+   OPEN ADD WINDOW
+========================================================= */
 
-/* =========================================
-   CANCEL BUTTON
-========================================= */
-
-cancelNotifyBtn.addEventListener(
-  "click",
-  () => {
-
-    editingNotificationId =
-      null;
-
-    notifyForm.style.display =
-      "none";
-
-  }
-);
-
-
-
-/* =========================================
-   SAVE BUTTON
-========================================= */
-
-saveNotifyBtn.addEventListener(
+addNotificationBtn.addEventListener(
   "click",
   async () => {
 
+    /*
+      Browser permission must be requested
+      from a user action.
+    */
+
+    if("Notification" in window){
+
+      if(
+        Notification.permission !== "granted"
+      ){
+
+        const permission =
+          await Notification.requestPermission();
+
+        if(permission !== "granted"){
+
+          notificationStatus.textContent =
+            "Browser notification permission is not allowed.";
+
+        }
+
+      }
+
+    }
+
+
+    editingId = null;
+
+    modalTitle.textContent =
+      "Add Notification";
+
+    messageInput.value = "";
+
+    hourSelect.value = "10";
+
+    minuteSelect.value = "0";
+
+    ampmSelect.value = "AM";
+
+
+    notificationModal.style.display =
+      "flex";
+
+  }
+);
+
+
+/* =========================================================
+   CANCEL
+========================================================= */
+
+cancelNotificationBtn.addEventListener(
+  "click",
+  closeModal
+);
+
+
+function closeModal(){
+
+  notificationModal.style.display =
+    "none";
+
+  editingId = null;
+
+}
+
+
+/* =========================================================
+   SAVE TO FIREBASE
+========================================================= */
+
+saveNotificationBtn.addEventListener(
+  "click",
+  async () => {
+
+    const hour =
+      Number(hourSelect.value);
+
+    const minute =
+      Number(minuteSelect.value);
+
+    const ampm =
+      ampmSelect.value;
+
     const message =
-      notifyMessage.value.trim();
+      messageInput.value.trim();
 
 
     if(!message){
 
-      alert(
-        "Please enter a notification message."
-      );
+      alert("Please enter a message.");
 
       return;
 
     }
 
 
-    /* Browser notification support */
+    /*
+      Convert 12-hour time to 24-hour time.
+    */
 
-    if(!("Notification" in window)){
+    let hour24 = hour;
 
-      alert(
-        "This browser does not support notifications."
-      );
-
-      return;
-
-    }
-
-
-    /* Request permission */
-
-    if(
-      Notification.permission !==
-      "granted"
-    ){
-
-      const permission =
-        await Notification.requestPermission();
-
-
-      if(permission !== "granted"){
-
-        alert(
-          "Please allow notifications in your browser."
-        );
-
-        return;
-
-      }
-
-    }
-
-
-    let hour =
-      Number(notifyHour.value);
-
-    const minute =
-      Number(notifyMinute.value);
-
-    const ampm =
-      notifyAmPm.value;
-
-
-
-    /* Convert 12-hour to 24-hour */
 
     if(ampm === "AM"){
 
-      if(hour === 12){
+      if(hour === 12)
+        hour24 = 0;
 
-        hour = 0;
+    }else{
 
-      }
-
-    }
-
-    else{
-
-      if(hour !== 12){
-
-        hour += 12;
-
-      }
+      if(hour !== 12)
+        hour24 = hour + 12;
 
     }
 
 
+    const notificationData = {
 
-    const time =
-      String(hour).padStart(2,"0") +
-      ":" +
-      String(minute).padStart(2,"0");
+      hour: hour,
+
+      minute: minute,
+
+      hour24: hour24,
+
+      ampm: ampm,
+
+      message: message,
+
+      enabled: true,
+
+      updatedAt: Date.now()
+
+    };
 
 
+    try{
 
-    /* =====================================
-       EDIT EXISTING
-    ===================================== */
+      if(editingId){
 
-    if(editingNotificationId){
+        /*
+          EDIT EXISTING NOTIFICATION
+        */
 
-      const item =
-        scheduledNotifications.find(
-          n =>
-            n.id ===
-            editingNotificationId
+        await set(
+          ref(
+            db,
+            "notifications/" + editingId
+          ),
+          notificationData
         );
 
+      }else{
 
-      if(item){
+        /*
+          CREATE NEW NOTIFICATION
+        */
 
-        item.time =
-          time;
+        const newRef =
+          push(
+            ref(db, "notifications")
+          );
 
-        item.message =
-          message;
+
+        await set(
+          newRef,
+          {
+            ...notificationData,
+            createdAt: Date.now()
+          }
+        );
 
       }
 
 
-      clearTimeout(
-        notificationTimers[
-          editingNotificationId
-        ]
+      notificationStatus.textContent =
+        "Saved to Firebase. All linked devices can receive it.";
+
+      closeModal();
+
+
+    }catch(err){
+
+      console.error(err);
+
+      alert(
+        "Could not save notification to Firebase."
       );
 
     }
-
-
-    /* =====================================
-       ADD NEW
-    ===================================== */
-
-    else{
-
-      const newNotification = {
-
-        id:
-          Date.now().toString(),
-
-        time:
-          time,
-
-        message:
-          message
-
-      };
-
-
-      scheduledNotifications.push(
-        newNotification
-      );
-
-    }
-
-
-
-    /* Save */
-
-    localStorage.setItem(
-      "scheduledNotifications",
-      JSON.stringify(
-        scheduledNotifications
-      )
-    );
-
-
-    renderNotifications();
-
-
-    scheduleAllNotifications();
-
-
-    notifyForm.style.display =
-      "none";
-
-
-    editingNotificationId =
-      null;
 
   }
 );
 
 
+/* =========================================================
+   FIREBASE NOTIFICATION LISTENER
+========================================================= */
 
-/* =========================================
-   FORMAT 12-HOUR TIME
-========================================= */
+function attachNotificationListener(){
 
-function formatTime(time){
+  onValue(
+    ref(db, "notifications"),
 
-  const parts =
-    time.split(":");
+    (snap) => {
 
-
-  let hour =
-    Number(parts[0]);
-
-  const minute =
-    parts[1];
+      firebaseNotifications =
+        snap.val() || {};
 
 
-  const ampm =
-    hour >= 12
-      ? "PM"
-      : "AM";
+      renderNotifications();
 
 
-  hour =
-    hour % 12;
+      /*
+        Important:
+        Every device running this website
+        receives the same Firebase data.
+      */
 
+      scheduleAllNotifications();
 
-  if(hour === 0){
+    },
 
-    hour = 12;
+    (err) => {
 
-  }
+      console.error(err);
 
+      notificationStatus.textContent =
+        "Could not read Firebase notifications.";
 
-  return (
-    String(hour).padStart(2,"0") +
-    ":" +
-    minute +
-    " " +
-    ampm
+    }
   );
 
 }
 
 
-
-/* =========================================
+/* =========================================================
    DISPLAY NOTIFICATIONS
-========================================= */
+========================================================= */
 
 function renderNotifications(){
 
-  notifyList.innerHTML =
-    "";
+  notificationList.innerHTML = "";
 
 
-  if(
-    scheduledNotifications.length ===
-    0
-  ){
+  const entries =
+    Object.entries(
+      firebaseNotifications
+    );
 
-    notifyList.innerHTML =
-      '<div class="empty-notifications">No notifications scheduled.</div>';
+
+  if(entries.length === 0){
+
+    notificationList.innerHTML =
+      `<div class="empty">
+        No notifications scheduled.
+      </div>`;
+
+    notificationStatus.textContent =
+      "No notifications in Firebase.";
 
     return;
 
   }
 
 
-
-  scheduledNotifications.forEach(
-    item => {
-
-      const row =
-        document.createElement("div");
-
-      row.className =
-        "notify-item";
+  notificationStatus.textContent =
+    `${entries.length} notification(s) stored in Firebase.`;
 
 
+  /*
+    Sort by time.
+  */
 
-      const info =
-        document.createElement("div");
+  entries.sort((a,b) => {
 
-      info.className =
-        "notify-info";
+    const A = a[1];
 
-
-
-      const time =
-        document.createElement("div");
-
-      time.className =
-        "notify-time";
-
-      time.textContent =
-        formatTime(item.time);
+    const B = b[1];
 
 
+    return (
+      Number(A.hour24) * 60 +
+      Number(A.minute)
+    ) -
+    (
+      Number(B.hour24) * 60 +
+      Number(B.minute)
+    );
 
-      const message =
-        document.createElement("div");
-
-      message.className =
-        "notify-message-display";
-
-      message.textContent =
-        item.message;
-
-
-
-      info.appendChild(time);
-
-      info.appendChild(message);
+  });
 
 
+  for(
+    const [id, data]
+    of entries
+  ){
 
-      const actions =
-        document.createElement("div");
+    const item =
+      document.createElement("div");
 
-      actions.className =
-        "notify-actions";
-
-
-
-      const edit =
-        document.createElement("button");
-
-      edit.className =
-        "notify-edit";
-
-      edit.textContent =
-        "Edit";
+    item.className =
+      "notification-item";
 
 
-      edit.addEventListener(
+    const time =
+      formatTime(
+        data.hour,
+        data.minute,
+        data.ampm
+      );
+
+
+    item.innerHTML = `
+
+      <div class="notification-top">
+
+        <div class="notification-time">
+          ${escapeHtml(time)}
+        </div>
+
+      </div>
+
+      <div class="notification-message">
+        ${escapeHtml(data.message || "")}
+      </div>
+
+      <div class="notification-actions">
+
+        <button
+          class="small-btn edit-btn"
+          data-id="${id}">
+          ✏ Edit
+        </button>
+
+        <button
+          class="small-btn test-btn"
+          data-id="${id}">
+          🔔 Test
+        </button>
+
+        <button
+          class="small-btn delete-btn"
+          data-id="${id}">
+          🗑 Delete
+        </button>
+
+      </div>
+
+    `;
+
+
+    notificationList.appendChild(item);
+
+  }
+
+
+  /*
+    EDIT buttons
+  */
+
+  document
+    .querySelectorAll(".edit-btn")
+    .forEach(btn => {
+
+      btn.addEventListener(
         "click",
         () => {
 
-          editNotification(item.id);
+          editNotification(
+            btn.dataset.id
+          );
 
         }
       );
 
+    });
 
 
-      const remove =
-        document.createElement("button");
+  /*
+    TEST buttons
+  */
 
-      remove.className =
-        "notify-delete";
+  document
+    .querySelectorAll(".test-btn")
+    .forEach(btn => {
 
-      remove.textContent =
-        "Delete";
-
-
-      remove.addEventListener(
+      btn.addEventListener(
         "click",
         () => {
 
-          deleteNotification(item.id);
+          testNotification(
+            btn.dataset.id
+          );
 
         }
       );
 
+    });
 
 
-      actions.appendChild(edit);
+  /*
+    DELETE buttons
+  */
 
-      actions.appendChild(remove);
+  document
+    .querySelectorAll(".delete-btn")
+    .forEach(btn => {
 
+      btn.addEventListener(
+        "click",
+        () => {
 
+          deleteNotification(
+            btn.dataset.id
+          );
 
-      row.appendChild(info);
+        }
+      );
 
-      row.appendChild(actions);
-
-
-      notifyList.appendChild(row);
-
-    }
-  );
+    });
 
 }
 
 
-
-/* =========================================
+/* =========================================================
    EDIT
-========================================= */
+========================================================= */
 
 function editNotification(id){
 
-  const item =
-    scheduledNotifications.find(
-      n => n.id === id
-    );
+  const data =
+    firebaseNotifications[id];
 
 
-  if(!item){
-
+  if(!data)
     return;
 
-  }
+
+  editingId = id;
 
 
-  editingNotificationId =
-    id;
+  modalTitle.textContent =
+    "Edit Notification";
 
 
-  const parts =
-    item.time.split(":");
+  hourSelect.value =
+    String(data.hour);
 
 
-  let hour =
-    Number(parts[0]);
-
-  const minute =
-    Number(parts[1]);
+  minuteSelect.value =
+    String(data.minute);
 
 
-  const ampm =
-    hour >= 12
-      ? "PM"
-      : "AM";
+  ampmSelect.value =
+    data.ampm;
 
 
-  hour =
-    hour % 12;
+  messageInput.value =
+    data.message || "";
 
 
-  if(hour === 0){
-
-    hour = 12;
-
-  }
-
-
-  notifyHour.value =
-    String(hour);
-
-
-  notifyMinute.value =
-    String(minute);
-
-
-  notifyAmPm.value =
-    ampm;
-
-
-  notifyMessage.value =
-    item.message;
-
-
-  notifyForm.style.display =
-    "block";
-
-  notifyMessage.focus();
+  notificationModal.style.display =
+    "flex";
 
 }
 
 
-
-/* =========================================
+/* =========================================================
    DELETE
-========================================= */
+========================================================= */
 
-function deleteNotification(id){
+async function deleteNotification(id){
 
-  const ok =
+  const data =
+    firebaseNotifications[id];
+
+
+  if(!data)
+    return;
+
+
+  const yes =
     confirm(
-      "Delete this notification?"
+      `Delete "${data.message}"?`
     );
 
 
-  if(!ok){
+  if(!yes)
+    return;
+
+
+  try{
+
+    await remove(
+      ref(
+        db,
+        "notifications/" + id
+      )
+    );
+
+
+  }catch(err){
+
+    console.error(err);
+
+    alert(
+      "Could not delete notification."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   TEST NOTIFICATION NOW
+========================================================= */
+
+async function testNotification(id){
+
+  const data =
+    firebaseNotifications[id];
+
+
+  if(!data)
+    return;
+
+
+  if(!("Notification" in window)){
+
+    alert(
+      "This browser does not support notifications."
+    );
 
     return;
 
   }
 
 
-  clearTimeout(
-    notificationTimers[id]
+  if(
+    Notification.permission !== "granted"
+  ){
+
+    const permission =
+      await Notification.requestPermission();
+
+
+    if(permission !== "granted"){
+
+      alert(
+        "Please allow browser notifications."
+      );
+
+      return;
+
+    }
+
+  }
+
+
+  new Notification(
+    "Vitals Monitor",
+    {
+      body: data.message
+    }
   );
-
-
-  delete notificationTimers[id];
-
-
-  scheduledNotifications =
-    scheduledNotifications.filter(
-      n => n.id !== id
-    );
-
-
-  localStorage.setItem(
-    "scheduledNotifications",
-    JSON.stringify(
-      scheduledNotifications
-    )
-  );
-
-
-  renderNotifications();
 
 }
 
 
-
-/* =========================================
-   SCHEDULE ALL
-========================================= */
+/* =========================================================
+   SCHEDULE DAILY NOTIFICATIONS
+========================================================= */
 
 function scheduleAllNotifications(){
 
-  /* Clear existing timers */
+  /*
+    Cancel previous timers.
+  */
 
-  Object.values(
-    notificationTimers
-  ).forEach(
-    timer => {
+  for(
+    const id in notificationTimers
+  ){
 
-      clearTimeout(timer);
+    clearTimeout(
+      notificationTimers[id]
+    );
 
-    }
-  );
+  }
 
 
   notificationTimers = {};
 
 
+  /*
+    Schedule each Firebase notification
+    on THIS device.
+  */
 
-  scheduledNotifications.forEach(
-    item => {
+  for(
+    const [id, data]
+    of Object.entries(
+      firebaseNotifications
+    )
+  ){
 
-      scheduleNotification(item);
+    if(data.enabled === false)
+      continue;
 
-    }
-  );
+
+    scheduleNotification(
+      id,
+      data
+    );
+
+  }
 
 }
 
 
-
-/* =========================================
+/* =========================================================
    SCHEDULE ONE
-========================================= */
+========================================================= */
 
-function scheduleNotification(item){
+function scheduleNotification(id, data){
 
   const now =
     new Date();
 
 
-  const parts =
-    item.time.split(":");
-
-
-  const hour =
-    Number(parts[0]);
-
-  const minute =
-    Number(parts[1]);
-
-
-  const target =
+  let target =
     new Date();
 
 
   target.setHours(
-    hour,
-    minute,
+    Number(data.hour24),
+    Number(data.minute),
     0,
     0
   );
 
 
-  /* If time passed today,
-     schedule tomorrow */
+  /*
+    If today's time already passed,
+    schedule tomorrow.
+  */
 
   if(target <= now){
 
@@ -2296,19 +1917,24 @@ function scheduleNotification(item){
     now.getTime();
 
 
-  notificationTimers[item.id] =
+  notificationTimers[id] =
     setTimeout(
       () => {
 
-        showNotification(item);
+        showScheduledNotification(
+          id,
+          data
+        );
 
 
         /*
           Schedule again for tomorrow.
-          This makes it a daily notification.
         */
 
-        scheduleNotification(item);
+        scheduleNotification(
+          id,
+          data
+        );
 
       },
       delay
@@ -2317,53 +1943,21 @@ function scheduleNotification(item){
 }
 
 
+/* =========================================================
+   SHOW SCHEDULED NOTIFICATION
+========================================================= */
 
-/* =========================================
-   SHOW NOTIFICATION
-========================================= */
-
-function showNotification(item){
-
-  if(
-    Notification.permission !==
-    "granted"
-  ){
-
-    return;
-
-  }
-
-
-  new Notification(
-    "Vitals Monitor",
-    {
-      body:
-        item.message
-    }
-  );
-
-}
-
-
-
-/* =========================================
-   START NOTIFICATION SYSTEM
-========================================= */
-
-renderNotifications();
-
-
-if(
-  Notification.permission ===
-  "granted"
+function showScheduledNotification(
+  id,
+  data
 ){
 
-  scheduleAllNotifications();
+  if(
+    !("Notification" in window)
+  )
+    return;
 
-}
 
-
-</script>
-
-</body>
-</html>
+  if(
+    Notification.perm
+```
