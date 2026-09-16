@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Notifications</title>
+</head>
+<body>
+
+    <h1>🔔 My Notification Website</h1>
+
+    <button onclick="enableNotifications()">
+        Allow Notifications
+    </button>
+
+    <button onclick="sendNotification()">
+        Send Test Notification
+    </button>
+
+    <script>
+        async function enableNotifications() {
+            const permission = await Notification.requestPermission();
+
+            if (permission === "granted") {
+                alert("Notifications enabled! ✅");
+            } else {
+                alert("Permission denied.");
+            }
+        }
+
+        function sendNotification() {
+            if (Notification.permission === "granted") {
+                new Notification("Hello! 🔔", {
+                    body: "This is my first notification!"
+                });
+            } else {
+                alert("Click Allow Notifications first.");
+            }
+        }
+    </script>
+
+</body>
+</html>
